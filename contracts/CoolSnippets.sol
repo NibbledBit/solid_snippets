@@ -18,6 +18,7 @@ contract Snippets {
     modifier costs(uint256 _amount) {
         require(msg.value >= _amount, "Not enough Ether provided.");
         _;
-        if (msg.value > _amount) msg.sender.transfer(msg.value - _amount);
+        if (msg.value > _amount)
+            payable(msg.sender).transfer(msg.value - _amount);
     }
 }
